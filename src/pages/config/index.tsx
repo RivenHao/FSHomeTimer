@@ -44,8 +44,26 @@ export default function Config() {
       return;
     }
 
+    Taro.redirectTo({
+      url: '/pages/completed/index'
+    });
+    
     Taro.navigateTo({
       url: `/pages/timer/index?participants=${p}&rounds=${r}&roundTime=${rt}&prepTime=${pt}&intervalTime=${it || 0}&sfxVolume=${sfxVolume}&bgmVolume=${bgmVolume}`,
+    });
+  };
+
+  // 复制链接
+  const handleCopyLink = (link: string) => {
+    Taro.setClipboardData({
+      data: link,
+      success: () => {
+        Taro.showToast({
+          title: '链接已复制',
+          icon: 'success',
+          duration: 2000
+        });
+      }
     });
   };
 
@@ -54,7 +72,7 @@ export default function Config() {
       <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/headImage.png' className='header-bg' mode='aspectFill' />
       <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/mainbackground.png' className='footer-bg' mode='aspectFill' />
       
-      <View className='jump-button' onClick={() => window.open('https://freestyler.site')}>
+      <View className='jump-button' onClick={() => handleCopyLink('https://freestyler.site')}>
         <Text>前往FS Skills</Text>
         <View className='arrow-icon'></View>
       </View>
