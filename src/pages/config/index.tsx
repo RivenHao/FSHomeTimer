@@ -73,8 +73,8 @@ export default function Config() {
       <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/mainbackground.png' className='footer-bg' mode='aspectFill' />
       
       <View className='jump-button' onClick={() => handleCopyLink('https://freestyler.site')}>
-        <Text>前往FS Skills</Text>
-        <View className='arrow-icon'></View>
+        <Text>复制链接后用浏览器打开，前往FS Skills</Text>
+        <Image className='jump-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/copy.png'/>
       </View>
 
       <View className='content-wrapper'>

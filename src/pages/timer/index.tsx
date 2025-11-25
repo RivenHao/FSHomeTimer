@@ -1,9 +1,11 @@
-import { View, Text, Button } from '@tarojs/components';
+import { View, Text, Image } from '@tarojs/components';
 import { useState, useEffect, useRef } from 'react';
 import Taro, { useLoad } from '@tarojs/taro';
 import { useAudio } from '../../hooks/useAudio';
 import { AUDIO_CONFIG } from '../../config/audio';
 import { TimerConfig, Phase, StatusInfo } from '../../types/timer';
+import { LOTTIE_ANIMATIONS } from '../../config/lottie';
+import LottieAnimation from '../../components/LottieAnimation';
 import './index.scss';
 
 export default function Timer() {
@@ -15,45 +17,45 @@ export default function Timer() {
     prepTime: 10,
     intervalTime: 0
   });
-  
+
   const [sfxVolume, setSfxVolume] = useState(70);
   const [bgmVolume, setBgmVolume] = useState(30);
-  
+
   // ========== 计时器状态 ==========
   const [currentRound, setCurrentRound] = useState(1);
   const [currentParticipant, setCurrentParticipant] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [phase, setPhase] = useState<Phase>('prep');
   const [isPaused, setIsPaused] = useState(false);
-  
+
   // ========== Refs ==========
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const audioTriggeredRef = useRef<{ [key: string]: boolean }>({});
   const isPausedRef = useRef(isPaused);
-  
+
   // 使用 ref 来跟踪最新的状态值
   const phaseRef = useRef<Phase>(phase);
   const roundRef = useRef(currentRound);
   const participantRef = useRef(currentParticipant);
   const configRef = useRef<TimerConfig>(config);
-  
+
   // ========== 同步 ref 和 state ==========
   useEffect(() => {
     phaseRef.current = phase;
   }, [phase]);
-  
+
   useEffect(() => {
     roundRef.current = currentRound;
   }, [currentRound]);
-  
+
   useEffect(() => {
     participantRef.current = currentParticipant;
   }, [currentParticipant]);
-  
+
   useEffect(() => {
     configRef.current = config;
   }, [config]);
-  
+
   useEffect(() => {
     isPausedRef.current = isPaused;
   }, [isPaused]);
@@ -76,7 +78,7 @@ export default function Timer() {
   // ========== 页面加载时获取参数 ==========
   useLoad((options) => {
     console.log('Timer 页面加载，参数：', options);
-    
+
     // 从 URL 参数中获取配置
     const newConfig: TimerConfig = {
       participants: parseInt(options.participants || '2'),
@@ -85,49 +87,49 @@ export default function Timer() {
       prepTime: parseInt(options.prepTime || '10'),
       intervalTime: parseInt(options.intervalTime || '0')
     };
-    
+
     const newSfxVolume = parseInt(options.sfxVolume || '70');
     const newBgmVolume = parseInt(options.bgmVolume || '30');
-    
+
     setConfig(newConfig);
     setSfxVolume(newSfxVolume);
     setBgmVolume(newBgmVolume);
-    
+
     // 初始化计时器状态
     setCurrentRound(1);
     setCurrentParticipant(1);
     setCurrentTime(newConfig.prepTime);
     setPhase('prep');
     setIsPaused(false);
-    
+
     // 重置音频触发标记
     audioTriggeredRef.current = {};
-    
+
     // 预加载音频
     preloadAudio();
-    
+
     // 设置音量（转换为 0-1 的小数）
     setVolume(newSfxVolume / 100);
     setBgmVolume(newBgmVolume / 100);
-    
+
     // 稍后播放背景音乐
     setTimeout(() => {
       playBackgroundMusic();
     }, 100);
-    
+
     // 设置屏幕常亮
     Taro.setKeepScreenOn({
       keepScreenOn: true,
       success: () => console.log('屏幕保持常亮'),
       fail: () => console.log('设置屏幕常亮失败')
     });
-    
+
     // 启动定时器
     timerRef.current = setInterval(() => {
       if (!isPausedRef.current) {
         setCurrentTime(prev => {
           const newTime = prev - 1;
-          
+
           // 时间到了，切换阶段
           if (newTime <= 0) {
             setTimeout(() => {
@@ -135,7 +137,7 @@ export default function Timer() {
             }, 0);
             return 0;
           }
-          
+
           return newTime;
         });
       }
@@ -143,7 +145,7 @@ export default function Timer() {
   });
 
   // ========== 计时器核心逻辑 ==========
-  
+
   /**
    * 处理阶段转换
    */
@@ -152,9 +154,9 @@ export default function Timer() {
     const currentRoundNum = roundRef.current;
     const currentParticipantNum = participantRef.current;
     const currentConfig = configRef.current;
-    
+
     console.log('阶段转换:', { currentPhase, currentRoundNum, currentParticipantNum, currentConfig });
-    
+
     // 1. 准备阶段结束 → 第1轮第1人
     if (currentPhase === 'prep') {
       console.log('准备阶段结束 → 第1轮第1人');
@@ -162,7 +164,7 @@ export default function Timer() {
       setCurrentTime(currentConfig.roundTime);
       return;
     }
-    
+
     // 2. 回合阶段
     if (currentPhase === 'round') {
       // 2.1 不是最后一个玩家 → 下一个玩家
@@ -172,13 +174,13 @@ export default function Timer() {
         setCurrentTime(currentConfig.roundTime);
         return;
       }
-      
+
       // 2.2 是最后一个玩家
       // 2.2.1 不是最后一轮
       if (currentRoundNum < currentConfig.rounds) {
         console.log(`第${currentRoundNum}轮结束 → 进入间隔或第${currentRoundNum + 1}轮`);
         setCurrentParticipant(1);
-        
+
         // 如果有间隔时间 → 进入间隔阶段
         if (currentConfig.intervalTime > 0) {
           setPhase('interval');
@@ -190,13 +192,13 @@ export default function Timer() {
         }
         return;
       }
-      
+
       // 2.2.2 最后一轮最后一个玩家 → 完成
       console.log('比赛完成！');
       complete();
       return;
     }
-    
+
     // 3. 间隔阶段结束 → 下一轮第1人
     if (currentPhase === 'interval') {
       console.log(`间隔结束 → 第${currentRoundNum + 1}轮第1人`);
@@ -216,12 +218,12 @@ export default function Timer() {
       clearInterval(timerRef.current);
     }
     stopBackgroundMusic();
-    
+
     // 取消屏幕常亮
     Taro.setKeepScreenOn({
       keepScreenOn: false
     });
-    
+
     // 跳转到完成页面
     Taro.redirectTo({
       url: '/pages/completed/index'
@@ -234,13 +236,13 @@ export default function Timer() {
   const togglePause = () => {
     setIsPaused(prev => {
       const newPausedState = !prev;
-      
+
       if (newPausedState) {
         pauseBackgroundMusic();
       } else {
         resumeBackgroundMusic();
       }
-      
+
       return newPausedState;
     });
   };
@@ -253,12 +255,12 @@ export default function Timer() {
       clearInterval(timerRef.current);
     }
     stopBackgroundMusic();
-    
+
     // 取消屏幕常亮
     Taro.setKeepScreenOn({
       keepScreenOn: false
     });
-    
+
     // 返回配置页
     Taro.navigateBack();
   };
@@ -302,7 +304,7 @@ export default function Timer() {
     if (isPaused) return;
 
     const audioKey = `${phase}-${currentRound}-${currentParticipant}-${currentTime}`;
-    
+
     // 避免重复触发
     if (audioTriggeredRef.current[audioKey]) return;
 
@@ -311,18 +313,18 @@ export default function Timer() {
       playBattleStarting();
       audioTriggeredRef.current[audioKey] = true;
     }
-    
+
     // 2. 10 Seconds: 每个玩家每回合最后11秒时播放
     else if (phase === 'round' && currentTime === 11) {
       playTenSeconds();
       audioTriggeredRef.current[audioKey] = true;
     }
-    
+
     // 3. Countdown Switch/Finish: 每个玩家每回合最后5秒时播放
     else if (phase === 'round' && currentTime === 5) {
       const isLastPlayer = currentParticipant === configRef.current.participants;
       const isLastRound = currentRound === configRef.current.rounds;
-      
+
       if (isLastPlayer && isLastRound) {
         playCountdownFinish();
       } else {
@@ -330,7 +332,7 @@ export default function Timer() {
       }
       audioTriggeredRef.current[audioKey] = true;
     }
-    
+
     // 4. Countdown Start: 每轮间隔时间最后4秒时播放
     else if (phase === 'interval' && currentTime === 4) {
       playCountdownStart();
@@ -356,20 +358,44 @@ export default function Timer() {
   const statusInfo = getStatusInfo();
 
   return (
-    <View className='container'>
-      <View className='timer-section'>
-        <View className='status-info'>
-          <Text className='status-title'>{statusInfo.title}</Text>
-          {statusInfo.detail && <Text className='status-detail'>{statusInfo.detail}</Text>}
+    <View className='page-container'>
+      <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/headImage.png' className='header-bg' mode='aspectFill' />
+
+      <View className='timer-main'>
+        {/* 头部区域 */}
+        <View className='timer-main-title'>
+          <Image className='timer-main-title-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/logo.png'/>
+          <Text className='timer-main-title-text'>BATTLE计时器</Text>
         </View>
-        
+
+        {/* Lottie 动画 */}
+        <View className='lottie-container'>
+          <LottieAnimation
+            canvasId='timer-lottie'
+            path={LOTTIE_ANIMATIONS.timerBackground}
+            loop={true}
+            autoplay={true}
+            style={{ width: '200px', height: '200px' }}
+          />
+        </View>
+
+        {/* 倒计时区 */}
         <Text className='timer-display'>{formatTime(currentTime)}</Text>
-        
+        {/* 轮次-选手区 */}
+        <View className='timer-'>
+          <Text className=''>{statusInfo.title}</Text>
+          {statusInfo.detail && <Text className=''>{statusInfo.detail}</Text>}
+        </View>
+        {/* 音量控制区 */}
+        <View>
+
+        </View>
+        {/* 按钮区 */}
         <View className='controls'>
-          <Button onClick={togglePause} className='btn-secondary'>
+          <Text onClick={reset} className='controls-reset controls-btn'>重置</Text>
+          <Text onClick={togglePause} className='controls-secondary controls-btn'>
             {isPaused ? '继续' : '暂停'}
-          </Button>
-          <Button onClick={reset} className='btn-danger'>重置</Button>
+          </Text>
         </View>
       </View>
     </View>
