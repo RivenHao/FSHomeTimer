@@ -70,30 +70,30 @@
       align-items: center;
 
       &:nth-child(1) {
-        width: 126rpx;
+        max-width: 126rpx;
         height: 196rpx;
         margin-right: 64rpx;
       }
 
       &:nth-child(2) {
-        width: 126rpx;
+        max-width: 126rpx;
         height: 196rpx;
         margin-right: 64rpx;
       }
 
       &:nth-child(3) {
-        width: 160rpx;
+        max-width: 160rpx;
         height: 196rpx;
       }
 
       &:nth-child(4) {
-        width: 248rpx;
+        width: 240rpx;
         height: 180rpx;
         margin-right: 50rpx;
       }
 
       &:nth-child(5) {
-        width: 244rpx;
+        width: 240rpx;
         height: 180rpx;
       }
 
@@ -121,7 +121,7 @@
       // 大输入框
       .form-input-prep,
       .form-input-interval {
-        width: 244rpx;
+        width: 200rpx;
         height: 84rpx;
       }
 

@@ -43,10 +43,6 @@ export default function Config() {
       Taro.showToast({ title: '间隔时间必须为0或≥5秒', icon: 'none' });
       return;
     }
-
-    Taro.redirectTo({
-      url: '/pages/completed/index'
-    });
     
     Taro.navigateTo({
       url: `/pages/timer/index?participants=${p}&rounds=${r}&roundTime=${rt}&prepTime=${pt}&intervalTime=${it || 0}&sfxVolume=${sfxVolume}&bgmVolume=${bgmVolume}`,

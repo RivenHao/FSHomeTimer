@@ -16,8 +16,9 @@ export default function Timer() {
     intervalTime: 0
   });
 
-  const [sfxVolume, setSfxVolume] = useState(70);
-  const [bgmVolume, setBgmVolume] = useState(30);
+  // 用于显示的音量值（0-100）
+  const [displaySfxVolume, setDisplaySfxVolume] = useState(70);
+  const [displayBgmVolume, setDisplayBgmVolume] = useState(30);
 
   // ========== 计时器状态 ==========
   const [currentRound, setCurrentRound] = useState(1);
@@ -71,6 +72,7 @@ export default function Timer() {
     stopBackgroundMusic,
     preloadAudio,
     setVolume,
+    setBgmVolume: setAudioBgmVolume,
   } = useAudio(AUDIO_CONFIG);
 
   // ========== 页面加载时获取参数 ==========
@@ -90,8 +92,10 @@ export default function Timer() {
     const newBgmVolume = parseInt(options.bgmVolume || '30');
 
     setConfig(newConfig);
-    setSfxVolume(newSfxVolume);
-    setBgmVolume(newBgmVolume);
+    
+    // 设置音量显示值（0-100）
+    setDisplaySfxVolume(newSfxVolume);
+    setDisplayBgmVolume(newBgmVolume);
 
     // 初始化计时器状态
     setCurrentRound(1);
@@ -108,7 +112,7 @@ export default function Timer() {
 
     // 设置音量（转换为 0-1 的小数）
     setVolume(newSfxVolume / 100);
-    setBgmVolume(newBgmVolume / 100);
+    setAudioBgmVolume(newBgmVolume / 100);
 
     // 稍后播放背景音乐
     setTimeout(() => {
@@ -381,16 +385,38 @@ export default function Timer() {
         <View className='volume-control-item'>
           <View className='volume-control-item-tip'>
             <Text className='volume-control-item-tip-label'>MC人声</Text>
-            <Text className='volume-control-item-tip-value'>音量：{Math.round(sfxVolume)}%</Text>
+            <Text className='volume-control-item-tip-value'>音量：{Math.round(displaySfxVolume)}%</Text>
           </View>
-          <Slider className='volume-control-item-slider' value={sfxVolume} onChange={(e) => setSfxVolume(e.detail.value)} activeColor='#5F2AFF' backgroundColor='#BED4FF99' blockSize={16} />
+          <Slider 
+            className='volume-control-item-slider' 
+            value={displaySfxVolume} 
+            onChange={(e) => {
+              const newVolume = e.detail.value;
+              setDisplaySfxVolume(newVolume);
+              setVolume(newVolume / 100);
+            }} 
+            activeColor='#5F2AFF' 
+            backgroundColor='#BED4FF99' 
+            blockSize={16} 
+          />
         </View>
         <View className='volume-control-item'>
           <View className='volume-control-item-tip'>
             <Text className='volume-control-item-tip-label'>背景音乐</Text>
-            <Text className='volume-control-item-tip-value'>音量：{Math.round(bgmVolume)}%</Text>
+            <Text className='volume-control-item-tip-value'>音量：{Math.round(displayBgmVolume)}%</Text>
           </View>
-          <Slider className='volume-control-item-slider' value={bgmVolume} onChange={(e) => setBgmVolume(e.detail.value)} activeColor='#004FE1' backgroundColor='#BED4FF99' blockSize={16} />
+          <Slider 
+            className='volume-control-item-slider' 
+            value={displayBgmVolume} 
+            onChange={(e) => {
+              const newVolume = e.detail.value;
+              setDisplayBgmVolume(newVolume);
+              setAudioBgmVolume(newVolume / 100);
+            }} 
+            activeColor='#004FE1' 
+            backgroundColor='#BED4FF99' 
+            blockSize={16} 
+          />
         </View>
         <View className='volume-control-item'>
           <Text className='volume-control-item-text'>背景音调至&ldquo;0&rdquo;，支持同时使用其他软件的音乐~</Text>

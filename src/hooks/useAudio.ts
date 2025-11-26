@@ -55,12 +55,13 @@ export const useAudio = (audioConfig: AudioConfig) => {
       audioInstancesRef.current.countdownStart.src = audioConfig.countdownStart;
     }
     
-    // 预加载背景音乐（如果有）
-    // if (audioConfig.backgroundMusic && !audioInstancesRef.current.backgroundMusic) {
-    //   audioInstancesRef.current.backgroundMusic = Taro.createInnerAudioContext();
-    //   audioInstancesRef.current.backgroundMusic.src = audioConfig.backgroundMusic;
-    //   audioInstancesRef.current.backgroundMusic.loop = true; // 循环播放
-    // }
+    // 预加载背景音乐
+    if (audioConfig.backgroundMusic && !audioInstancesRef.current.backgroundMusic) {
+      audioInstancesRef.current.backgroundMusic = Taro.createInnerAudioContext();
+      audioInstancesRef.current.backgroundMusic.src = audioConfig.backgroundMusic;
+      audioInstancesRef.current.backgroundMusic.loop = true; // 循环播放
+      console.log('背景音乐已预加载:', audioConfig.backgroundMusic);
+    }
   };
 
   /**
