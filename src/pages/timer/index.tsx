@@ -1,11 +1,9 @@
-import { View, Text, Image } from '@tarojs/components';
+import { View, Text, Image, Slider } from '@tarojs/components';
 import { useState, useEffect, useRef } from 'react';
 import Taro, { useLoad } from '@tarojs/taro';
 import { useAudio } from '../../hooks/useAudio';
 import { AUDIO_CONFIG } from '../../config/audio';
 import { TimerConfig, Phase, StatusInfo } from '../../types/timer';
-import { LOTTIE_ANIMATIONS } from '../../config/lottie';
-import LottieAnimation from '../../components/LottieAnimation';
 import './index.scss';
 
 export default function Timer() {
@@ -282,7 +280,7 @@ export default function Timer() {
       case 'prep':
         return {
           title: '准备阶段',
-          detail: '比赛即将开始，请做好准备'
+          detail: ''
         };
       case 'round':
         return {
@@ -292,7 +290,7 @@ export default function Timer() {
       case 'interval':
         return {
           title: `第 ${currentRound} 轮结束`,
-          detail: '休息时间，下一轮即将开始'
+          detail: ''
         };
       default:
         return { title: '', detail: '' };
@@ -359,44 +357,51 @@ export default function Timer() {
 
   return (
     <View className='page-container'>
-      <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/headImage.png' className='header-bg' mode='aspectFill' />
+      <View className='title'>
+        <Image className='title-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/logo.png' />
+        <Text className='title-text'>BATTLE计时器</Text>
+      </View>
 
+      {/* 圆弧分隔线 */}
+      <View className='arc-line' />
+
+      {/* 计时层 */}
       <View className='timer-main'>
-        {/* 头部区域 */}
-        <View className='timer-main-title'>
-          <Image className='timer-main-title-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/logo.png'/>
-          <Text className='timer-main-title-text'>BATTLE计时器</Text>
-        </View>
-
-        {/* Lottie 动画 */}
-        <View className='lottie-container'>
-          <LottieAnimation
-            canvasId='timer-lottie'
-            path={LOTTIE_ANIMATIONS.timerBackground}
-            loop={true}
-            autoplay={true}
-            style={{ width: '200px', height: '200px' }}
-          />
-        </View>
-
-        {/* 倒计时区 */}
         <Text className='timer-display'>{formatTime(currentTime)}</Text>
-        {/* 轮次-选手区 */}
-        <View className='timer-'>
-          <Text className=''>{statusInfo.title}</Text>
-          {statusInfo.detail && <Text className=''>{statusInfo.detail}</Text>}
-        </View>
-        {/* 音量控制区 */}
-        <View>
+      </View>
 
+      {/* 文字提示 */}
+      <View className='timer-status'>
+        <Image className='timer-status-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/toparow.png' />
+        <Text className='timer-status-text'>{statusInfo.title}</Text>
+      </View>
+
+      {/* 音量控制 */}
+      <View className='timer-voice'>
+        <View className='volume-control-item'>
+          <View className='volume-control-item-tip'>
+            <Text className='volume-control-item-tip-label'>MC人声</Text>
+            <Text className='volume-control-item-tip-value'>音量：{Math.round(sfxVolume)}%</Text>
+          </View>
+          <Slider className='volume-control-item-slider' value={sfxVolume} onChange={(e) => setSfxVolume(e.detail.value)} activeColor='#5F2AFF' backgroundColor='#BED4FF99' blockSize={16} />
         </View>
-        {/* 按钮区 */}
-        <View className='controls'>
-          <Text onClick={reset} className='controls-reset controls-btn'>重置</Text>
-          <Text onClick={togglePause} className='controls-secondary controls-btn'>
-            {isPaused ? '继续' : '暂停'}
-          </Text>
+        <View className='volume-control-item'>
+          <View className='volume-control-item-tip'>
+            <Text className='volume-control-item-tip-label'>背景音乐</Text>
+            <Text className='volume-control-item-tip-value'>音量：{Math.round(bgmVolume)}%</Text>
+          </View>
+          <Slider className='volume-control-item-slider' value={bgmVolume} onChange={(e) => setBgmVolume(e.detail.value)} activeColor='#004FE1' backgroundColor='#BED4FF99' blockSize={16} />
         </View>
+        <View className='volume-control-item'>
+          <Text className='volume-control-item-text'>背景音调至&ldquo;0&rdquo;，支持同时使用其他软件的音乐~</Text>
+        </View>
+      </View>
+      {/* 按钮区 */}
+      <View className='controls'>
+        <Text onClick={reset} className='controls-reset controls-btn'>重置</Text>
+        <Text onClick={togglePause} className='controls-secondary controls-btn'>
+          {isPaused ? '继续' : '暂停'}
+        </Text>
       </View>
     </View>
   );

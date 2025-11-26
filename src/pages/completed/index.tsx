@@ -36,11 +36,31 @@ export default function Completed() {
             <Text>更多精彩内容，尽在FS Skills！</Text>
           </View>
         </View>
+
         <View className='main-card'>
-          <Image className='main-card-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/completedLogo.png' />
-          <Text className='main-card-text'>全网最全招式库
-            解锁专属花足成就</Text>
-          <Text className='main-card-text2'></Text>
+          <View className='main-card-logo'>
+            <Image className='main-card-img-people' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/peopleLogo.png' />
+            <View className='main-card-log-right'>
+              <View className='main-card-log-right-top'>
+                <Image className='main-card-img-logo' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/mainLogo.png'/>
+                <Text className='main-card-log-right-top-text'> Freestyle Skills</Text>
+              </View>
+              <Text className='main-card-log-right-text'>最强花式足球网站</Text>
+            </View>
+          </View>
+
+          <View className='main-card-tip'>
+            <Text className='main-card-tip-title'>招式库</Text>
+            <Text className='main-card-tip-desc'>花式足球技巧动作 1000+</Text>
+          </View>
+          <View className='main-card-tip'>
+            <Text className='main-card-tip-title'>每周挑战赛</Text>
+            <Text className='main-card-tip-desc'>全新接力玩法，有奖赛季制</Text>
+          </View>
+          <View className='main-card-tip'>
+            <Text className='main-card-tip-title'>个人成就墙</Text>
+            <Text className='main-card-tip-desc'>通关招式，解锁FS头衔</Text>
+          </View>
         </View>
       </View>
       <View className='form-footer' onClick={() => Taro.reLaunch({ url: '/pages/config/index' })}>

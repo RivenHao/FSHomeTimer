@@ -65,12 +65,13 @@
   align-items: center;
 
   .main-title {
-    width: 410rpx;
+    min-width: 410rpx;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 64rpx;
+
     .main-title-one {
       display: flex;
       justify-content: center;
@@ -90,7 +91,7 @@
     .main-title-two {
       margin-top: 32rpx;
       color: #fff;
-      font-size: 24rpx;
+      font-size: 32rpx;
     }
   }
 
@@ -101,22 +102,64 @@
     border-radius: 24rpx;
     background: url(https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/completedBg.png) no-repeat;
     display: flex;
-    align-items: center;    
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    .main-card-img {
-      width: 326rpx;
-      height: 244rpx;
-    }
-    .main-card-text {
-      color: #fff;
-      font-size: 40rpx;
-      width: 320rpx;
-      text-align: center;
-      margin-top: 40rpx;
-    }
-    .main-card-text2 {
 
+    .main-card-logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .main-card-img-people {
+        width: 146rpx;
+        height: 220rpx;
+      }
+
+      .main-card-log-right {
+        display: flex;
+        flex-direction: column;
+        margin-left: 28rpx;
+
+        .main-card-log-right-top {
+          color: #fff;
+          display: flex;
+          align-items: center;
+
+          .main-card-img-logo {
+            width: 38rpx;
+            height: 74rpx;
+          }
+
+          .main-card-log-right-top-text {
+            margin-left: 16rpx;
+            font-size: 32rpx;
+          }
+        }
+
+        .main-card-log-right-text {
+          color: #fff;
+          margin-top: 40rpx;
+        }
+      }
+    }
+
+    .main-card-tip {
+      font-size: 24rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 32rpx;
+
+      .main-card-tip-title {
+        color: #fff;
+      }
+
+      .main-card-tip-desc {
+        margin-top: 8rpx;
+        color: #85DFFF;
+      }
     }
   }
 }

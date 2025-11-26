@@ -1,8 +1,8 @@
 export default defineAppConfig({
   pages: [
-    'pages/timer/index',
-    'pages/completed/index',
     'pages/config/index',
+    'pages/completed/index',
+    'pages/timer/index',
   ],
   window: {
     backgroundTextStyle: 'light',
