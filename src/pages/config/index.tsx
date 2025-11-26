@@ -10,13 +10,13 @@ export default function Config() {
   const [roundTime, setRoundTime] = useState('30');
   const [prepTime, setPrepTime] = useState('5');
   const [intervalTime, setIntervalTime] = useState('0');
-  
+
   // 音量
   const [sfxVolume, setSfxVolume] = useState(50);
   const [bgmVolume, setBgmVolume] = useState(50);
 
   // 提交时校验
-  const handleSubmit = () => {    
+  const handleSubmit = () => {
     const p = parseInt(participants);
     const r = parseInt(rounds);
     const rt = parseInt(roundTime);
@@ -43,7 +43,7 @@ export default function Config() {
       Taro.showToast({ title: '间隔时间必须为0或≥5秒', icon: 'none' });
       return;
     }
-    
+
     Taro.navigateTo({
       url: `/pages/timer/index?participants=${p}&rounds=${r}&roundTime=${rt}&prepTime=${pt}&intervalTime=${it || 0}&sfxVolume=${sfxVolume}&bgmVolume=${bgmVolume}`,
     });
@@ -67,10 +67,11 @@ export default function Config() {
     <View className='page-container'>
       <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/headImage.png' className='header-bg' mode='aspectFill' />
       <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/mainbackground.png' className='footer-bg' mode='aspectFill' />
-      
+
+      <Text className='head-text'>访问我们的官网，了解更多内容</Text>
       <View className='jump-button' onClick={() => handleCopyLink('https://freestyler.site')}>
         <Text>复制链接后用浏览器打开，前往FS Skills</Text>
-        <Image className='jump-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/copy.png'/>
+        <Image className='jump-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/copy.png' />
       </View>
 
       <View className='content-wrapper'>

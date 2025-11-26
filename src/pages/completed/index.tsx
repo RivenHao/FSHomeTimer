@@ -21,6 +21,7 @@ export default function Completed() {
     <View className='page-container'>
       <Image src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/headImage.png' className='header-bg' mode='aspectFill' />
 
+      <Text className='head-text'>访问我们的官网，了解更多内容</Text>
       <View className='jump-button' onClick={() => handleCopyLink('https://freestyler.site')}>
         <Text>复制链接后用浏览器打开，前往FS Skills</Text>
         <Image className='jump-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/copy.png' />
@@ -38,28 +39,28 @@ export default function Completed() {
         </View>
 
         <View className='main-card'>
-          <View className='main-card-logo'>
-            <Image className='main-card-img-people' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/peopleLogo.png' />
-            <View className='main-card-log-right'>
-              <View className='main-card-log-right-top'>
-                <Image className='main-card-img-logo' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/mainLogo.png'/>
-                <Text className='main-card-log-right-top-text'> Freestyle Skills</Text>
-              </View>
-              <Text className='main-card-log-right-text'>最强花式足球网站</Text>
-            </View>
+          <View className='main-card-title'>
+            <Image className='main-card-title-img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/mainLogo.png' />
+            <Text className='main-card-title-text'> Freestyle Skills</Text>
           </View>
 
-          <View className='main-card-tip'>
-            <Text className='main-card-tip-title'>招式库</Text>
-            <Text className='main-card-tip-desc'>花式足球技巧动作 1000+</Text>
-          </View>
-          <View className='main-card-tip'>
-            <Text className='main-card-tip-title'>每周挑战赛</Text>
-            <Text className='main-card-tip-desc'>全新接力玩法，有奖赛季制</Text>
-          </View>
-          <View className='main-card-tip'>
-            <Text className='main-card-tip-title'>个人成就墙</Text>
-            <Text className='main-card-tip-desc'>通关招式，解锁FS头衔</Text>
+          <View className='main-card-content'>
+            <Image className='main-card-content-Img' src='https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/peopleLogo.png' />
+            <View className='main-card-content-tip'>
+              <Text className='main-card-content-title'>最强花式足球网站</Text>
+              <View className='main-card-tip'>
+                <Text className='main-card-tip-title'>招式库</Text>
+                <Text className='main-card-tip-desc'>花式足球技巧动作 1000+</Text>
+              </View>
+              <View className='main-card-tip'>
+                <Text className='main-card-tip-title'>每周挑战赛</Text>
+                <Text className='main-card-tip-desc'>全新接力玩法，有奖赛季制</Text>
+              </View>
+              <View className='main-card-tip'>
+                <Text className='main-card-tip-title'>个人成就墙</Text>
+                <Text className='main-card-tip-desc'>通关招式，解锁FS头衔</Text>
+              </View>
+            </View>
           </View>
         </View>
       </View>

@@ -1,7 +1,8 @@
 export default defineAppConfig({
   pages: [
+        'pages/completed/index',
+
     'pages/config/index',
-    'pages/completed/index',
     'pages/timer/index',
   ],
   window: {
