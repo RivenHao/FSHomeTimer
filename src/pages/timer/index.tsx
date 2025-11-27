@@ -1,12 +1,28 @@
 import { View, Text, Image, Slider } from '@tarojs/components';
 import { useState, useEffect, useRef } from 'react';
-import Taro, { useLoad } from '@tarojs/taro';
+import Taro, { useLoad, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import { useAudio } from '../../hooks/useAudio';
 import { AUDIO_CONFIG } from '../../config/audio';
 import { TimerConfig, Phase, StatusInfo } from '../../types/timer';
 import './index.scss';
 
 export default function Timer() {
+  // 分享给朋友
+  useShareAppMessage(() => {
+    return {
+      title: 'BATTLE计时器 - 专业的花式足球比赛计时工具',
+      path: '/pages/config/index',
+      imageUrl: 'https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/logo.png'
+    };
+  });
+
+  // 分享到朋友圈
+  useShareTimeline(() => {
+    return {
+      title: 'BATTLE计时器 - 专业的花式足球比赛计时工具',
+      imageUrl: 'https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/logo.png'
+    };
+  });
   // ========== 配置参数 ==========
   const [config, setConfig] = useState<TimerConfig>({
     participants: 2,

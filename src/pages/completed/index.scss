@@ -8,7 +8,7 @@
 
 // 沉浸式头图背景
 .header-bg {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%; // 设计稿 375px → 750rpx
@@ -48,7 +48,7 @@
   border: 2px solid #101A2D;
   background-color: #fff;
   border-radius: 26rpx;
-  position: fixed;
+  position: absolute;
   top: 440rpx;
   left: calc(50% - 247rpx);
   z-index: 2;

@@ -8,7 +8,7 @@
 
 // 沉浸式头图背景
 .header-bg {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%; // 设计稿 375px → 750rpx
@@ -79,30 +79,33 @@
 
       &:nth-child(1) {
         max-width: 126rpx;
-        height: 196rpx;
+        max-height: 196rpx;
         margin-right: 64rpx;
       }
 
       &:nth-child(2) {
         max-width: 126rpx;
-        height: 196rpx;
+        max-height: 196rpx;
         margin-right: 64rpx;
       }
 
       &:nth-child(3) {
         max-width: 160rpx;
-        height: 196rpx;
+        max-height: 196rpx;
       }
 
       &:nth-child(4) {
-        width: 240rpx;
-        height: 180rpx;
-        margin-right: 50rpx;
+        max-width: 240rpx;
+        max-height: 180rpx;
+        margin-top: 20rpx;
       }
 
       &:nth-child(5) {
-        width: 240rpx;
-        height: 180rpx;
+        max-width: 240rpx;
+        max-height: 180rpx;
+        margin-left: 50rpx;
+        margin-top: 20rpx;
+
       }
 
       .label {
@@ -122,15 +125,17 @@
 
       // 小输入框
       .form-input {
-        width: 126rpx;
-        height: 112rpx;
+        max-width: 126rpx;
+        max-height: 112rpx;
+        min-height: 100rpx;
       }
 
       // 大输入框
       .form-input-prep,
       .form-input-interval {
-        width: 200rpx;
-        height: 84rpx;
+        max-width: 200rpx;
+        max-height: 84rpx;
+        min-height: 80rpx;
       }
 
       .form-input-tip {
@@ -158,7 +163,7 @@
 
   .volume-control-item {
     width: 100%;
-    max-width: 492rpx;
+    min-width: 492rpx;
     margin: 0 auto;
     margin-bottom: 24rpx;
 
@@ -234,7 +239,7 @@
   border: 2px solid #101A2D;
   background-color: #fff;
   border-radius: 26rpx;
-  position: fixed;
+  position: absolute;
   top: 376rpx;
   right: 24rpx;
   z-index: 2;
@@ -243,6 +248,7 @@
   align-items: center;
   font-size: 24rpx;
   gap: 8rpx;
+
   .jump-img {
     width: 32rpx;
     height: 32rpx;

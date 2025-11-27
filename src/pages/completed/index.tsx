@@ -1,8 +1,24 @@
 import { View, Text, Image } from '@tarojs/components';
-import Taro from '@tarojs/taro';
+import Taro, { useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import './index.scss';
 
 export default function Completed() {
+  // 分享给朋友
+  useShareAppMessage(() => {
+    return {
+      title: 'BATTLE计时器 - 专业的花式足球比赛计时工具',
+      path: '/pages/config/index',
+      imageUrl: 'https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/logo.png'
+    };
+  });
+
+  // 分享到朋友圈
+  useShareTimeline(() => {
+    return {
+      title: 'BATTLE计时器 - 专业的花式足球比赛计时工具',
+      imageUrl: 'https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/logo.png'
+    };
+  });
   // 复制链接
   const handleCopyLink = (link: string) => {
     Taro.setClipboardData({
