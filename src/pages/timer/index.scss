@@ -2,64 +2,52 @@
 .page-container {
   min-height: 100vh;
   position: relative;
-  background: url('https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/IMG_1906.GIF') no-repeat center top;
-  background-size: cover;
   box-sizing: border-box;
-  overflow: hidden;
+  background:
+    url('https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/bottomBg.png') no-repeat bottom center / 100% 51.35%,
+    /* 第二层背景：靠下，宽度100% */
+    url('https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/IMG_1906.GIF') no-repeat top center / 100% 100%,
+    /* 第一层背景：靠上，宽度100% */
 }
 
 .title {
-  min-width: 310rpx;
-  min-height: 152rpx;
+  min-width: 41.33vw; // 310rpx
+  min-height: 9.36vh; // 152rpx
   position: absolute;
-  top: 150rpx;
-  left: 218rpx;
+  top: 9.24vh; // 150rpx
+  left: 29.07vw; // 218rpx
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .title-img {
-    width: 84rpx;
-    height: 84rpx;
+    width: 11.2vw; // 84rpx
+    height: 5.17vh; // 84rpx
   }
 
   .title-text {
-    font-size: 48rpx;
+    font-size: 6.4vw; // 48rpx
     color: #fff;
-    margin-top: 12rpx;
+    margin-top: 0.74vh; // 12rpx
   }
-}
-
-// 圆弧分隔线
-.arc-line {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 4rpx solid #1E53FF;
-  width: 1000rpx;
-  height: 650rpx;
-  overflow: hidden;
-  border-radius: 50% 50% 0 0;
-  margin-top: 380rpx;
-  border-bottom: none;
-  background-color: #1D2129;
 }
 
 // 内容层
 .timer-main {
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 520rpx;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  top: 30%;
 
   .timer-display {
-    font-size: 100rpx;
+    font-size: 13.33vw; // 100rpx
     color: #fff;
     font-weight: bold;
-    margin-bottom: 20rpx;
-    letter-spacing: 18rpx;
+    margin-bottom: 1.23vh; // 20rpx
+    letter-spacing: 2.4vw; // 18rpx
     text-shadow:
       0 0 10px rgba(0, 89, 255, 0.8),
       0 0 20px rgba(0, 89, 255, 0.6),
@@ -69,8 +57,8 @@
 }
 
 .timer-status {
-  min-width: 330rpx;
-  min-height: 124rpx;
+  min-width: 44vw; // 330rpx
+  min-height: 7.64vh; // 124rpx
   position: absolute;
   top: 50%;
   left: 50%;
@@ -78,44 +66,45 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 150rpx;
+  margin-top: 9.24vh; // 150rpx
 
   .timer-status-img {
-    width: 130rpx;
-    height: 52rpx;
+    width: 17.33vw; // 130rpx
+    height: 3.2vh; // 52rpx
   }
 
   .timer-status-text {
     color: #fff;
-    font-size: 40rpx;
+    font-size: 5.33vw; // 40rpx
     text-align: center;
-    margin-top: 24rpx;
+    margin-top: 1.48vh; // 24rpx
+    white-space: nowrap;
   }
 }
 
 .timer-voice {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 670rpx;
-  height: 364rpx;
-  margin-top: 424rpx;
+  transform: translateX(-50%);
+  width: 89.33vw; // 670rpx
+  min-height: 22.41vh; // 364rpx
   background-color: #2E3956;
-  border-radius: 16rpx;
+  border-radius: 2.13vw; // 16rpx
 
   .volume-control-item {
     width: 100%;
-    max-width: 492rpx;
+    max-width: 65.6vw; // 492rpx
     margin: 0 auto;
-    margin-bottom: 24rpx;
-    margin-top: 40rpx;
+    margin-bottom: 1.48vh; // 24rpx
+    margin-top: 2.46vh; // 40rpx
+
     .volume-control-item-tip {
       display: flex;
       flex-direction: row;
       align-items: center;
       color: #fff;
-      font-size: 28rpx;
+      font-size: 3.73vw; // 28rpx
       justify-content: space-between;
     }
 
@@ -125,40 +114,41 @@
     }
 
     .volume-control-item-slider .wx-slider-handle-wrapper {
-      height: 10rpx !important;
+      height: 0.62vh !important; // 10rpx
     }
 
     .volume-control-item-text {
-      font-size: 24rpx;
+      font-size: 3.2vw; // 24rpx
       color: #94B9FF;
+      white-space: nowrap;
     }
   }
 }
 
 .controls {
   width: 100%;
-  height: 142rpx;
+  height: 8.74vh; // 142rpx
   display: flex;
   position: fixed;
   bottom: 0;
-  font-size: 40rpx;
-  line-height: 56rpx;
+  font-size: 5.33vw; // 40rpx
+  line-height: 3.45vh; // 56rpx
   z-index: 100;
 
   .controls-btn {
     flex: 1;
     color: #fff;
     text-align: center;
-    line-height: 142rpx;
+    line-height: 8.74vh; // 142rpx
   }
 
   .controls-secondary {
-    border-radius: 0 16rpx 0 0;
+    border-radius: 0 2.13vw 0 0; // 16rpx
     background-color: #0059FF;
   }
 
   .controls-reset {
-    border-radius: 16rpx 0 0 0;
+    border-radius: 2.13vw 0 0 0; // 16rpx
     background-color: #3E4E6A;
   }
 }

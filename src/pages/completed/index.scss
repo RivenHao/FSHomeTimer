@@ -12,16 +12,16 @@
   top: 0;
   left: 0;
   width: 100%; // 设计稿 375px → 750rpx
-  height: 524rpx; // 设计稿 262px → 524rpx
+  height: 32.64vh; // 524rpx -> 524/16.24
   z-index: 0;
-  pointer-events: none;
 }
 
 .head-text {
   color: #fff;
   font-size: 26rpx;
   position: absolute;
-  top: 160rpx;
+  top: 9vh; // 160rpx
+  left: 8.53vw; // 64rpx
   left: 64rpx;
 }
 
@@ -38,20 +38,19 @@
   bottom: 0;
   font-size: 40rpx;
   line-height: 56rpx;
-  z-index: 10;
+  z-index: 1;
 }
 
 .jump-button {
-  width: 494rpx;
-  height: 52rpx;
+  width: 64.54vw;
+  height: 3.2vh;
   color: #101A2D;
   border: 2px solid #101A2D;
   background-color: #fff;
   border-radius: 26rpx;
   position: absolute;
-  top: 440rpx;
-  left: calc(50% - 247rpx);
-  z-index: 2;
+  top: 25.13vh;
+  left: 17.1vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,68 +64,73 @@
 }
 
 .main {
-  height: 1000rpx;
+  position: absolute;
+  top: 30.3vh;
+  height: 69.7vh;
+  width: 100%;
   background-color: #272A33;
-  padding-top: 524rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 48rpx 0 0 0;
 
   .main-title {
-    min-width: 410rpx;
+    width: 54.67vw;
+    height: 9.11vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 64rpx;
+    margin-top: 4vh;
 
     .main-title-one {
       display: flex;
       justify-content: center;
+      align-items: center;
 
       .main-title-one-img {
-        width: 84rpx;
-        height: 84rpx;
+        width: 11.2vw;
+        height: 11.2vw;
       }
 
       .main-title-one-text {
         font-size: 56rpx;
         color: #fff;
-        padding-left: 32rpx;
+        padding-left: 4.27vw;
       }
     }
 
     .main-title-two {
-      margin-top: 32rpx;
+      margin-top: 1.47vh;
       color: #fff;
       font-size: 32rpx;
+      white-space: nowrap;
     }
   }
 
   .main-card {
-    width: 622rpx;
-    height: 600rpx;
-    margin-top: 64rpx;
+    width: 82.93vw;
+    height: 36.95vh;
+    margin-top: 3.94vh;
     border-radius: 24rpx;
     background: url(https://objectstorageapi.bja.sealos.run/w7g0b67k-fs-book/completedBg.png) no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // justify-content: center;
 
     .main-card-title {
-      width: 284rpx;
-      height: 74rpx;
+      width: 37.87vw;
+      height: 4.56vh;
       display: flex;
       align-items: center;
-      margin-top: 48rpx;
+      margin-top: 2.96vh;
+      justify-content: center;
+
       .main-card-title-img {
         width: 38rpx;
         height: 74rpx;
       }
 
       .main-card-title-text {
-        margin-left: 16rpx;
+        margin-left: 2.13vw;
         font-size: 32rpx;
         color: #fff;
       }
@@ -135,14 +139,16 @@
     .main-card-content {
       display: flex;
       flex-direction: row;
-      margin-top: 36rpx;
+      margin-top: 2.22vh;
+
       .main-card-content-Img {
         width: 220rpx;
         height: 332rpx;
       }
 
       .main-card-content-tip {
-        margin-left: 24rpx;
+        margin-left: 3.2vw;
+
         .main-card-content-title {
           font-size: 40rpx;
           color: #99E9FF;
@@ -152,14 +158,14 @@
           font-size: 24rpx;
           display: flex;
           flex-direction: column;
-          margin-top: 32rpx;
+          margin-top: 1.97vh;
 
           .main-card-tip-title {
             color: #fff;
           }
 
           .main-card-tip-desc {
-            margin-top: 8rpx;
+            margin-top: 0.5vh;
             color: #85DFFF;
           }
         }

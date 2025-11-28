@@ -12,15 +12,29 @@
   top: 0;
   left: 0;
   width: 100%; // 设计稿 375px → 750rpx
-  height: 524rpx; // 设计稿 262px → 524rpx
+  height: 32.64vh; // 524rpx -> 524/16.24
   z-index: 0;
+}
+
+// 输入框公共样式
+.form-input {
+  border: 2rpx solid #0160EF;
+  border-radius: 16rpx;
+  text-align: center;
+  font-size: 48rpx; // 48rpx
+  color: #0160EF;
+}
+
+.label {
+  font-size: 32rpx; // 28rpx
 }
 
 .head-text {
   color: #fff;
   font-size: 26rpx;
   position: absolute;
-  top: 160rpx;
+  top: 9vh; // 160rpx
+  left: 8.53vw; // 64rpx
   left: 64rpx;
 }
 
@@ -28,149 +42,163 @@
 .content-wrapper {
   position: relative;
   z-index: 1;
-  padding-top: 450rpx; // 头图高度，让内容从头图下方开始
-  padding-left: 24rpx; // 左右留白
-  padding-right: 24rpx;
-  padding-bottom: 180rpx; // 底部按钮高度 + 留白
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   box-sizing: border-box;
 
   .content-form {
-    width: 100%;
-    max-width: 654rpx; // 最大宽度
-    box-sizing: border-box;
+    width: 86.93vw; // 654rpx
+    height: 33.13vh;
+    margin-top: 27.59vh; // 450rpx
   }
 
   .form-title {
-    height: 88rpx;
+    height: 5.42vh; // 88rpx
     background-color: #1F2633;
     color: #E4C077;
-    border-radius: 24rpx 24rpx 0 0;
-    font-size: 28rpx;
-    line-height: 36px;
+    border-radius: 3.2vw 3.2vw 0 0; // 24rpx
+    font-size: 3.73vw; // 28rpx
+    line-height: 5.42vh; // 这里的line-height通常跟height一致
     display: flex;
     align-items: center;
     justify-content: center;
 
     .form-title-image {
-      width: 72rpx;
-      height: 72rpx;
-      margin-right: 20rpx;
+      width: 9.6vw; // 72rpx
+      height: 4.43vh; // 72rpx
+      margin-right: 2.67vw; // 20rpx
     }
   }
 
   .form-grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    min-height: 380rpx;
-    padding: 30rpx 28rpx;
+    align-items: center;
+    height: 27.59vh;
     background-color: #fff;
-    border-radius: 0 0 24rpx 24rpx;
-    box-sizing: border-box;
+    border-radius: 0 0 24rpx 24rpx; // 24rpx
 
-    .form-grid-item {
+    .form-grid-item-container1 {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
 
-      &:nth-child(1) {
-        max-width: 136rpx;
-        max-height: 196rpx;
-        margin-right: 64rpx;
-      }
+      .form-grid-item1 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-      &:nth-child(2) {
-        max-width: 126rpx;
-        max-height: 196rpx;
-        margin-right: 64rpx;
-      }
+        // 小输入框
+        .form-input-small {
+          margin-top: 16rpx;
+          width: 16.8vw; // 126rpx
+          height: 6.9vh; // 112rpx
+        }
 
-      &:nth-child(3) {
-        max-width: 180rpx;
-        max-height: 196rpx;
-      }
+        &:nth-child(1) {
+          min-width: 16.8vw; // 136rpx
+          height: 10.84vh; // 196rpx
+          white-space: nowrap;
+        }
 
-      &:nth-child(4) {
-        max-width: 240rpx;
-        max-height: 180rpx;
-        margin-top: 20rpx;
-      }
+        &:nth-child(2) {
+          min-width: 16.8vw; // 136rpx
+          height: 10.84vh; // 196rpx
+          margin-left: 8.53vw; // 64rpx;
+          white-space: nowrap;
+        }
 
-      &:nth-child(5) {
-        max-width: 240rpx;
-        max-height: 180rpx;
-        margin-left: 50rpx;
-        margin-top: 20rpx;
+        &:nth-child(3) {
+          min-width: 21.33vw; // 180rpx
+          height: 10.84vh; // 196rpx
+          margin-left: 7.47vw;
+          white-space: nowrap;
+        }
 
-      }
-
-      .label {
-        margin-bottom: 16rpx;
-      }
-
-      // 输入框公共样式
-      .form-input,
-      .form-input-prep,
-      .form-input-interval {
-        border: 1px solid #0160EF;
-        border-radius: 16rpx;
-        text-align: center;
-        font-size: 48rpx;
-        color: #0160EF;
-      }
-
-      // 小输入框
-      .form-input {
-        max-width: 126rpx;
-        max-height: 112rpx;
-        min-height: 100rpx;
-      }
-
-      // 大输入框
-      .form-input-prep,
-      .form-input-interval {
-        max-width: 200rpx;
-        max-height: 84rpx;
-        min-height: 80rpx;
-      }
-
-      .form-input-tip {
-        font-size: 24rpx;
-        color: #999;
-        margin-top: 10rpx;
       }
     }
 
+    .form-grid-item-container2 {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 1.48vh;
+
+      .form-grid-item2 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 33.07vw;
+        height: 11.08vh;
+
+        .label {
+          font-size: 28rpx;
+        }
+
+        // 大输入框
+        .form-input-big {
+          margin-top: 0.49vh;
+          width: 32.53vw; // 200rpx
+          height: 5.17vh;
+        }
+
+        .form-input-tip {
+          margin-top: 0.49vh;
+          font-size: 24rpx;
+          color: #808080;
+        }
+
+        &:nth-child(2) {
+          margin-left: 6.67vw;
+        }
+      }
+    }
   }
 }
 
 .volume-control {
-  width: 100%;
-  max-width: 654rpx;
-  min-height: 448rpx;
+  width: 86.93vw;
+  min-height: 27.59vh;
   background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 24rpx;
-  margin-top: 24rpx;
+  border-radius: 3.2vw; // 24rpx
+  margin-top: 1.47vh;
+  margin-bottom: 10.22vh;
   padding: 24rpx 40rpx;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  .volume-control-item-text {
+    font-size: 24rpx;
+    color: #004FE1;
+    white-space: nowrap;
+  }
 
   .volume-control-item {
-    width: 100%;
-    min-width: 492rpx;
-    margin: 0 auto;
-    margin-bottom: 24rpx;
+    width: 65.6vw;
+    height: 8.62vh;
 
     .volume-control-item-title {
       font-size: 32rpx;
     }
 
+    .volume-control-item-slider {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .volume-control-item-slider .wx-slider-handle-wrapper {
+      height: 0.64vh !important;
+    }
+    
     .volume-control-item-tip {
       display: flex;
       flex-direction: row;
@@ -188,18 +216,14 @@
       }
     }
 
-    .volume-control-item-slider {
-      width: 100%;
-      margin-left: 0;
+    
+
+    &:nth-child(2) {
+      margin-top: 1.48vh;
     }
 
-    .volume-control-item-slider .wx-slider-handle-wrapper {
-      height: 10rpx !important;
-    }
-
-    .volume-control-item-text {
-      font-size: 24rpx;
-      color: #004FE1;
+    &:nth-child(3) {
+      margin-top: 1.48vh;
     }
   }
 }
@@ -208,7 +232,7 @@
 
 .form-footer {
   width: 100%;
-  height: 142rpx;
+  height: 8.74vh; // 142rpx
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,23 +249,23 @@
 // 底部背景图
 .footer-bg {
   position: fixed;
-  bottom: 20rpx;
+  bottom: 1.23vh; // 20rpx
   left: 0;
   width: 100%;
-  height: 800rpx; // 根据图片调整
+  height: 49.26vh; // 800rpx; // 根据图片调整
   z-index: 0;
 }
 
 .jump-button {
-  width: 494rpx;
-  height: 52rpx;
+  width: 65.87vw; // 494rpx
+  height: 3.2vh;
   color: #101A2D;
   border: 2px solid #101A2D;
   background-color: #fff;
   border-radius: 26rpx;
   position: absolute;
-  top: 376rpx;
-  right: 24rpx;
+  top: 23.15vh; // 376rpx
+  right: 3.2vw;
   z-index: 2;
   display: flex;
   justify-content: center;
@@ -250,7 +274,7 @@
   gap: 8rpx;
 
   .jump-img {
-    width: 32rpx;
-    height: 32rpx;
+    width: 4.27vw; // 32rpx
+    height: 1.97vh;
   }
 }

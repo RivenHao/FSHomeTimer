@@ -98,51 +98,52 @@ export default function Config() {
           </View>
 
           <View className='form-grid'>
-            <View className='form-grid-item'>
-              <Text className='label'>参与人数</Text>
-              <Input className='form-input' type='number' value={participants} onInput={(e) => setParticipants(e.detail.value)} />
+            <View className='form-grid-item-container1'>
+              <View className='form-grid-item1'>
+                <Text className='label'>参与人数</Text>
+                <Input className='form-input form-input-small' type='number' value={participants} onInput={(e) => setParticipants(e.detail.value)} />
+              </View>
+              <View className='form-grid-item1'>
+                <Text className='label'>轮次</Text>
+                <Input className='form-input form-input-small' type='number' value={rounds} onInput={(e) => setRounds(e.detail.value)} />
+              </View>
+              <View className='form-grid-item1'>
+                <Text className='label'>回合时间(s)</Text>
+                <Input className='form-input form-input-small' type='number' value={roundTime} onInput={(e) => setRoundTime(e.detail.value)} />
+              </View>
             </View>
-            <View className='form-grid-item'>
-              <Text className='label'>轮次</Text>
-              <Input className='form-input' type='number' value={rounds} onInput={(e) => setRounds(e.detail.value)} />
+            <View className='form-grid-item-container2'>
+              <View className='form-grid-item2'>
+                <Text className='label'>首轮准备时间(s)</Text>
+                <Input type='number' className='form-input form-input-big' value={prepTime} onInput={(e) => setPrepTime(e.detail.value)} />
+                <Text className='form-input-tip'>≥5秒</Text>
+              </View>
+              <View className='form-grid-item2'>
+                <Text className='label'>每轮间隔时间(s)</Text>
+                <Input type='number' className='form-input form-input-big' value={intervalTime} onInput={(e) => setIntervalTime(e.detail.value)} />
+                <Text className='form-input-tip'>0或≥5秒</Text>
+              </View>
             </View>
-            <View className='form-grid-item'>
-              <Text className='label'>回合时间(s)</Text>
-              <Input className='form-input' type='number' value={roundTime} onInput={(e) => setRoundTime(e.detail.value)} />
-            </View>
-            <View className='form-grid-item'>
-              <Text className='label'>首轮准备时间(s)</Text>
-              <Input type='number' className='form-input-prep' value={prepTime} onInput={(e) => setPrepTime(e.detail.value)} />
-              <Text className='form-input-tip'>≥5秒</Text>
-            </View>
-            <View className='form-grid-item'>
-              <Text className='label'>每轮间隔时间(s)</Text>
-              <Input type='number' className='form-input-interval' value={intervalTime} onInput={(e) => setIntervalTime(e.detail.value)} />
-              <Text className='form-input-tip'>0或≥5秒</Text>
-            </View>
+            
           </View>
         </View>
 
         <View className='volume-control'>
           <View className='volume-control-item'>
-            <Text className='volume-control-item-title'>MC人声音量</Text>
-            <Slider className='volume-control-item-slider' value={sfxVolume} onChange={(e) => setSfxVolume(e.detail.value)} activeColor='#5F2AFF' backgroundColor='#BED4FF99' blockSize={16} />
             <View className='volume-control-item-tip'>
-              <Text className='volume-control-item-tip-label'>控制人声大小</Text>
+              <Text className='volume-control-item-title'>MC人声音量</Text>
               <Text className='volume-control-item-tip-value'>音量：{Math.round(sfxVolume)}%</Text>
             </View>
+            <Slider className='volume-control-item-slider' value={sfxVolume} onChange={(e) => setSfxVolume(e.detail.value)} activeColor='#5F2AFF' backgroundColor='#BED4FF99' blockSize={16} />
           </View>
           <View className='volume-control-item'>
-            <Text className='volume-control-item-title'>背景音乐音量</Text>
-            <Slider className='volume-control-item-slider' value={bgmVolume} onChange={(e) => setBgmVolume(e.detail.value)} activeColor='#004FE1' backgroundColor='#BED4FF99' blockSize={16} />
             <View className='volume-control-item-tip'>
-              <Text className='volume-control-item-tip-label'>控制背景音乐大小</Text>
+              <Text className='volume-control-item-title'>背景音乐音量</Text>
               <Text className='volume-control-item-tip-value'>音量：{Math.round(bgmVolume)}%</Text>
             </View>
+            <Slider className='volume-control-item-slider' value={bgmVolume} onChange={(e) => setBgmVolume(e.detail.value)} activeColor='#004FE1' backgroundColor='#BED4FF99' blockSize={16} />
           </View>
-          <View className='volume-control-item'>
             <Text className='volume-control-item-text'>背景音调至&ldquo;0&rdquo;，支持同时使用其他软件的音乐~</Text>
-          </View>
         </View>
       </View>
 

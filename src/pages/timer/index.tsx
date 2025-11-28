@@ -382,9 +382,6 @@ export default function Timer() {
         <Text className='title-text'>BATTLE计时器</Text>
       </View>
 
-      {/* 圆弧分隔线 */}
-      <View className='arc-line' />
-
       {/* 计时层 */}
       <View className='timer-main'>
         <Text className='timer-display'>{formatTime(currentTime)}</Text>
@@ -438,6 +435,7 @@ export default function Timer() {
           <Text className='volume-control-item-text'>背景音调至&ldquo;0&rdquo;，支持同时使用其他软件的音乐~</Text>
         </View>
       </View>
+      
       {/* 按钮区 */}
       <View className='controls'>
         <Text onClick={reset} className='controls-reset controls-btn'>重置</Text>
